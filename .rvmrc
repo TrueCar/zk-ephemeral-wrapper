@@ -1,1 +1,1 @@
-rvm 1.9.2-p180@tc-user --create
+rvm 1.9.2-p180@zk-ephemeral-wrapper --create
