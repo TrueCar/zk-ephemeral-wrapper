@@ -14,3 +14,7 @@ class ZkEphemeralWrapper
     exit
   end
 end
+
+if __FILE__ == $0
+  ZkEphemeralWrapper.call(*ARGV)
+end
