@@ -12,6 +12,7 @@ GEM
     rspec-expectations (2.5.0)
       diff-lcs (~> 1.1.2)
     rspec-mocks (2.5.0)
+    trollop (1.16.2)
     zookeeper (0.4.4)
 
 PLATFORMS
@@ -20,4 +21,5 @@ PLATFORMS
 DEPENDENCIES
   rr (= 1.0.2)
   rspec (= 2.5.0)
+  trollop (= 1.16.2)
   zookeeper (= 0.4.4)

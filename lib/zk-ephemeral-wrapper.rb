@@ -16,5 +16,21 @@ class ZkEphemeralWrapper
 end
 
 if __FILE__ == $0
-  ZkEphemeralWrapper.call(*ARGV)
+  require "trollop"
+  opts = Trollop.options do
+    banner <<-EOS
+Wraps a program with a zookeeper ephemeral node.
+
+Usage:
+  zk-ephemeral-wrapper [options] <comma_delimited_zookeeper_hosts> <node_path> <*cmd>
+where [options] are:
+EOS
+    opt :help, "help", :short => "-h", :default => false
+  end
+
+  if opts[:help]
+    raise Trollop::HelpNeeded
+  else
+    ZkEphemeralWrapper.call(*ARGV)
+  end
 end
