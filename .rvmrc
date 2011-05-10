@@ -1,0 +1,3 @@
+[[ $(which rvm) ]] && rvm 1.9.2-p180@tc-user --create
+[[ $(which bundle) ]] || gem install bundler
+bundle install 2>1 > /dev/null
