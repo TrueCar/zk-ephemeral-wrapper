@@ -17,7 +17,7 @@ end
 
 if __FILE__ == $0
   require "trollop"
-  opts = Trollop.options do
+  parser = Trollop::Parser.new do
     banner <<-EOS
 Wraps a program with a zookeeper ephemeral node.
 
@@ -28,9 +28,12 @@ EOS
     opt :help, "help", :short => "-h", :default => false
   end
 
-  if opts[:help] || ARGV.length < 3
-    raise Trollop::HelpNeeded
-  else
-    ZkEphemeralWrapper.call(*ARGV)
+  opts = Trollop::with_standard_exception_handling(parser) do
+    parser.parse ARGV
+    if ARGV.length < 3
+      raise Trollop::HelpNeeded
+    end
   end
+puts "#{__FILE__}:#{__LINE__} #{opts.inspect}"
+  ZkEphemeralWrapper.call(*ARGV)
 end
