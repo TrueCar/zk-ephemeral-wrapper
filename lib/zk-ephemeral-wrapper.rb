@@ -28,7 +28,7 @@ EOS
     opt :help, "help", :short => "-h", :default => false
   end
 
-  if opts[:help]
+  if opts[:help] || ARGV.length < 3
     raise Trollop::HelpNeeded
   else
     ZkEphemeralWrapper.call(*ARGV)
