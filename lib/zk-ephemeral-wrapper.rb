@@ -10,8 +10,7 @@ class ZkEphemeralWrapper
       end
     end
     z.create(:path => File.join(parent_node, split_nodes[-1]), :ephemeral => true)
-    system(cmd.join(" "))
-    exit
+    exit system(cmd.join(" "))
   end
 end
 
