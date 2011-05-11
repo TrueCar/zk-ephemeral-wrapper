@@ -16,24 +16,14 @@ class ZkEphemeralWrapper
 end
 
 if __FILE__ == $0
-  require "trollop"
-  parser = Trollop::Parser.new do
-    banner <<-EOS
-Wraps a program with a zookeeper ephemeral node.
+  if ARGV.length < 3
+    puts <<-TEXT
+    Wraps a program with a zookeeper ephemeral node.
 
-Usage:
-  zk-ephemeral-wrapper [options] <comma_delimited_zookeeper_hosts> <node_path> <*cmd>
-where [options] are:
-EOS
-    opt :help, "help", :short => "-h", :default => false
+    Usage:
+      zk-ephemeral-wrapper [options] <comma_delimited_zookeeper_hosts> <node_path> <*cmd>
+    TEXT
+    exit 1
   end
-
-  opts = Trollop::with_standard_exception_handling(parser) do
-    parser.parse ARGV
-    if ARGV.length < 3
-      raise Trollop::HelpNeeded
-    end
-  end
-puts "#{__FILE__}:#{__LINE__} #{opts.inspect}"
   ZkEphemeralWrapper.call(*ARGV)
 end
